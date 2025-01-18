@@ -1,0 +1,24 @@
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
+import inspect
+
+
+def new_photo(name):
+    image = Image.open(name)
+    w, h = image.size
+    return image.resize((w//2, h//2))
+
+im = new_photo('водопад.jpg')
+draw = ImageDraw.Draw(im)
+font = ImageFont.truetype('Lobster-Regular.ttf', 100)
+draw.text((10, 10), 'Красота страшная сила', font=font, fill='green')
+# im.show()
+new_photo_module = inspect.getmodule(new_photo)
+print(f'type: {type(im)}, methods: {dir(im)}', end=', ')
+print(f'module: {new_photo_module}')
+
+=> 
+type: <class 'PIL.Image.Image'>, methods: ['_Image__transformer', '__annotations__', '__array_interface__', '__class__', '__copy__', '__delattr__', '__dict__', '__dir__', '__doc__', '__enter__', '__eq__', '__exit__', '__firstlineno__', '__format__', '__ge__', '__getattribute__', '__getstate__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__static_attributes__', '__str__', '__subclasshook__', '__weakref__', '_close_exclusive_fp_after_loading', '_close_fp', '_copy', '_crop', '_dump', '_ensure_mutable', '_exif', '_expand', '_get_safe_box', '_im', '_mode', '_new', '_reload_exif', '_repr_image', '_repr_jpeg_', '_repr_png_', '_repr_pretty_', '_size', 'alpha_composite', 'apply_transparency', 'close', 'convert', 'copy', 'crop', 'draft', 'effect_spread', 'entropy', 'filter', 'format', 'format_description', 'frombytes', 'get_child_images', 'getbands', 'getbbox', 'getchannel', 'getcolors', 'getdata', 'getexif', 'getextrema', 'getim', 'getpalette', 'getpixel', 'getprojection', 'getxmp', 'has_transparency_data', 'height', 'histogram', 'im', 'info', 'load', 'mode', 'palette', 'paste', 'point', 'putalpha', 'putdata', 'putpalette', 'putpixel', 'quantize', 'readonly', 'reduce', 'remap_palette', 'resize', 'rotate', 'save', 'seek', 'show', 'size', 'split', 'tell', 'thumbnail', 'tobitmap', 'tobytes', 'toqimage', 'toqpixmap', 'transform', 'transpose', 'verify', 'width'], module: <module '__main__' from 'D:\\proj\\практика 11\\main.py'>
+
+Process finished with exit code 0
